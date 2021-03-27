@@ -61,7 +61,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_margin="10dp"
-                    app:cardBackgroundColor=""
                     app:cardCornerRadius="12dp"
                     app:cardElevation="8dp">
 
@@ -194,7 +193,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginRight="8dp"
                     android:text="Don't have an account? "
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/black"
                     android:textStyle="italic" />
 
                 <TextView
@@ -202,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign Up"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
