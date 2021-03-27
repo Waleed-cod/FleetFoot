@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FleetFoot">
+        <activity android:name=".activity.Drop"></activity>
+        <activity android:name=".activity.PickUp" />
+        <activity android:name=".activity.Home" />
+        <activity android:name=".activity.SignUp" />
         <activity android:name=".activity.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

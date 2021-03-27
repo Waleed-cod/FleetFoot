@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.codembeded.fleetfoot.R;
 
-public class Login extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_up);
     }
 }
