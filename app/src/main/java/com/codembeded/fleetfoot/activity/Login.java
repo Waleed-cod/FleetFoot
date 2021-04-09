@@ -107,7 +107,6 @@ public class Login extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("email", email_str);
                 params.put("password", password_str);
-
                 return params;
             }
         };

@@ -3,62 +3,72 @@ package com.codembeded.fleetfoot.activity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.codembeded.fleetfoot.R;
 import com.codembeded.fleetfoot.adapter.AdapterForSlider;
+import com.codembeded.fleetfoot.helperClass.AppConfig;
+import com.codembeded.fleetfoot.helperClass.AppController;
 import com.codembeded.fleetfoot.models.ImageSliderModels;
+import com.google.android.material.card.MaterialCardView;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Home extends AppCompatActivity {
 
     SliderView sliderView;
     AdapterForSlider adapterForSlider;
     ArrayList<ImageSliderModels> list = new ArrayList<>();
-    LinearLayout scan_btn,pickUp_btn, drop_btn;
+    MaterialCardView scan_btn, pickUp_btn, drop_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-//        sliderView  = findViewById(R.id.home_image_slider);
-        pickUp_btn = findViewById(R.id.pickup_home_btn);
-        drop_btn = findViewById(R.id.drop_home_btn);
-        scan_btn = findViewById(R.id.scan_btn);
-//        setImageSlider();
+        init();
 
         drop_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this,Drop.class));
+
+                startActivity(new Intent(Home.this, Drop.class));
             }
         });
 
         pickUp_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Home.this,PickUp.class));
+                startActivity(new Intent(Home.this, PickUp.class));
             }
         });
 
         scan_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 scanCode();
             }
 
@@ -67,6 +77,16 @@ public class Home extends AppCompatActivity {
 
     }
 
+    private void init() {
+
+        //        sliderView  = findViewById(R.id.home_image_slider);
+        pickUp_btn = findViewById(R.id.pickup_home_btn);
+        drop_btn = findViewById(R.id.drop_home_btn);
+        scan_btn = findViewById(R.id.scan_btn);
+//        setImageSlider();
+    }
+
+    // BarCode
     private void scanCode() {
 
         IntentIntegrator integrator = new IntentIntegrator(this);
@@ -77,13 +97,13 @@ public class Home extends AppCompatActivity {
         integrator.initiateScan();
     }
 
+    // scanning code
     @Override
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null){
-            if (result.getContents() != null){
+        if (result != null) {
+            if (result.getContents() != null) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage(result.getContents());
                 builder.setTitle("Scanning Results");
@@ -100,13 +120,16 @@ public class Home extends AppCompatActivity {
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
-            }else {
+            } else {
                 Toast.makeText(this, "No Result", Toast.LENGTH_SHORT).show();
             }
-        }else {
+        } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+
+
 
 //    private void setImageSlider() {
 //
