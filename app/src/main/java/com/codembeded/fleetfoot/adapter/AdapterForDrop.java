@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.codembeded.fleetfoot.R;
+import com.codembeded.fleetfoot.activity.Drop;
 import com.codembeded.fleetfoot.models.DropModels;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AdapterForPickUp extends RecyclerView.Adapter<AdapterForPickUp.ViewHolder> {
+public class AdapterForDrop extends RecyclerView.Adapter<AdapterForDrop.ViewHolder> {
 
     ArrayList<DropModels> list;
     Context ctx;
 
-    public AdapterForPickUp(ArrayList<DropModels> list, Context ctx) {
+    public AdapterForDrop(ArrayList<DropModels> list, Context ctx) {
         this.list = list;
         this.ctx = ctx;
     }
@@ -28,12 +28,13 @@ public class AdapterForPickUp extends RecyclerView.Adapter<AdapterForPickUp.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.drop_box,parent,false);
-        return new ViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.drop_box,parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         holder.name.setText(list.get(position).getName());
         holder.address.setText(list.get(position).getAddress());
         holder.date.setText(list.get(position).getDate());
